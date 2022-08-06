@@ -15,14 +15,18 @@ function App() {
     fetchData();
   }, []);
 
-  type Breakdown = { id: number, category: string, cost: number };
+  type Breakdown = { id: number, category: string, cost: number, fixed: boolean };
+
+  const notFixedBreakdownList = breakdownList.filter((breakdown: Breakdown) => {
+    return !breakdown.fixed
+  })
 
   return (
     <>
       <h1>2022年x月</h1>
       <input />円
       <select>
-        {breakdownList.map((breakdown: Breakdown) => (
+        {notFixedBreakdownList.map((breakdown: Breakdown) => (
           <option key={breakdown.id} value={breakdown.category}>
             {breakdown.category}
           </option>
